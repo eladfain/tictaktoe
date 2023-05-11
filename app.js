@@ -11,9 +11,8 @@ const winOBJ={
     "c8":[["c7","c8","c9"],["c2","c5","c8"]],
     "c9":[["c7","c8","c9"],["c3","c6","c9"],["c1","c5","c9"]]
 }
-function init(){
-    const cells=document.querySelectorAll(".cell");
-    cells.forEach(cell=>addEventListener('click',(e)=>{
+window.onload=function(){
+    document.querySelectorAll(".cell").forEach(cell=>addEventListener('click',(e)=>{
         if(gameOn){
             const id=e.target.id;
             if(!hasValue(id)){
@@ -60,4 +59,10 @@ function win(winArr){
     gameOn=false;
     new Audio("./resource/win.wav").play();
 }
-init();
+
+function restart(){
+    xTurn=true;
+    gameOn=true;
+    document.querySelectorAll(".cell").forEach(cell=>cell.innerHTML="");
+    document.querySelectorAll(".win").forEach(cell=>cell.classList.remove("win"));
+}
